@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  db:
+    image: mysql/mysql-server:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ci_project
+      MYSQL_USER: ci_project
+      MYSQL_PASSWORD: ci_project_pass
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - 8081:80
+
+  app:
+    image: hitalos/laravel:latest
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_DATABASE: ci_project
+      DB_USERNAME: ci_project
+      DB_PASSWORD: ci_project_pass
+      DB_CONNECTION: mysql
