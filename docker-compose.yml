@@ -22,7 +22,7 @@ services:
       - 8081:80
 
   app:
-    image: hitalos/laravel:latest
+    build: .
     ports:
       - 8000:80
     volumes:
