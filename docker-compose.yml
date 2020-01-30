@@ -11,8 +11,6 @@ services:
       MYSQL_PASSWORD: ci_project_pass
     ports:
       - 3306:3306
-    expose:
-      - 3306
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
