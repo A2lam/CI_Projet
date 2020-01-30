@@ -22,8 +22,7 @@ services:
   app:
     build: .
     command: >
-      bash -c "php artisan migrate:refresh --force &&
-      php artisan db:seed --force &&
+      bash -c "php artisan migrate:refresh --seed --force &&
       php artisan serve --host=0.0.0.0 --port=80 --no-interaction"
     ports:
       - 8000:80

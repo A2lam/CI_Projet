@@ -8,9 +8,9 @@ WORKDIR /src
 # where available (npm@5+)
 COPY . .
 
-RUN composer install
-RUN npm install --save
-RUN npm run dev
+RUN composer install && \
+    npm install --save && \
+    npm run dev
 
 # If you are building your code for production
 # RUN npm install --only=production
